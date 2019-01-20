@@ -1,3 +1,3 @@
 class Cart < ApplicationRecord
-  has_many :cart_items
+  validates :completed, :presence => true
 end
