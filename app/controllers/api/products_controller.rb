@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class API::ProductsController < ApplicationController
-
   # Validate authenticity of api requests
   # before_action :check_authenticity
 
@@ -11,25 +10,18 @@ class API::ProductsController < ApplicationController
   # List all products
   def index
     @products = Product.all
-
-    respond_to do |format|
-      format.json { render json: @products }
-    end
+    render json: @products
   end
 
   # Search for specific product
   def search
-
-    respond_to do |format|
-      format.json { render json: @product }
-    end
+    render json: @product
   end
 
   private
 
- # Get product info based on product id
+  # Get product info based on product id
   def fetch_product
     @product = Product.find_by_id(params[:id])
   end
-
 end
