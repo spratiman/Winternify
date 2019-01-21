@@ -22,3 +22,5 @@ API Documentation [documentation](https://documenter.getpostman.com/view/2741447
         URL: http://0.0.0.0:3000/authenticate
         Headers: `Content-Type: application/json`
         Body: `{"email": "pratiman@winternify.com", "password": "summer2019"}`
+    3. Copy the `auth_token` from the response field
+    4. Select the Authorization tab in a new request, and select the Type as "Bearer Token" and Paste the copied token in the "token" field
