@@ -20,8 +20,6 @@ Rails.application.routes.draw do
 
       post '' => :create
 
-      delete '/:id' => :destroy
-
       put '/:id' => :update
 
       post '/:id/purchase' => :purchase

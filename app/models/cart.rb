@@ -1,3 +1,3 @@
 class Cart < ApplicationRecord
-  validates :completed, :presence => true
+  # validates :completed, :presence => true
 end
