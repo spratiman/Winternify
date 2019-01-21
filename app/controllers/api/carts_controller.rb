@@ -1,9 +1,14 @@
+# frozen_string_literal: true
+
+# Business logic for the API calls related to the cart operations
 class API::CartsController < ApplicationController
 
   # get cart details before every action
   before_action :fetch_cart
 
-  # Get the cart
+  # Get the cart, in this scenario, there's only one cart but the schema
+  # supports multiple carts
+  # GET  /api/carts
   def index
     @carts = Cart.all[0]
     fetch_cart_items
@@ -11,7 +16,8 @@ class API::CartsController < ApplicationController
     render json: @carts.as_json.merge(:included_products => @cart_items_products_final)
   end
 
-  # Create a cart
+  # Create an empty cart
+  # POST /api/carts
   def create
     @cart = Cart.new(cart_params)
 
@@ -23,6 +29,7 @@ class API::CartsController < ApplicationController
   end
 
   # Add products to the cart
+  # PUT  /api/carts/:id
   def update
     @cart = Cart.find_by_id(params[:id])
     params[:cart].each do |cart_item|
@@ -49,6 +56,7 @@ class API::CartsController < ApplicationController
   end
 
   # Complete the cart purchase
+  # POST /api/carts/:id/purchase
   def purchase
     @cart = Cart.find_by_id(params[:id])
     @cart_items = CartItem.all
@@ -98,6 +106,7 @@ class API::CartsController < ApplicationController
     @cart = Cart.find_by_id(params[:id])
   end
 
+  # Get cart itmes details based on the cart item in the cart
   def fetch_cart_items
     @cart_items_final = []
     cart_id = @carts.id
@@ -109,6 +118,7 @@ class API::CartsController < ApplicationController
     end
   end
 
+  # Get the product details based on the products in the cart item
   def fetch_cart_items_products
     @cart_items_products_final = []
     @cart_items_final.each do |cart_item|
@@ -116,6 +126,7 @@ class API::CartsController < ApplicationController
     end
   end
 
+  # Create a cart item based on the products added to the cart
   def create_cart_item
     params[:cart_id] = params[:id]
     params[:product_id] = @cart_item[:product_id]
@@ -129,6 +140,7 @@ class API::CartsController < ApplicationController
     end
   end
 
+  # Extracted cart params for creation and update body
   def cart_params
     params.require(:cart).permit(:completed, :product_id, :quantity)
   end

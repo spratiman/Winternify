@@ -21,7 +21,8 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 gem 'jwt'
-# Facilitates the connection between the controller and the model, rather than the controller and the view
+# Facilitates the connection between the controller and the model, rather than
+# the controller and the view
 gem 'simple_command'
 
 # Use ActiveStorage variant
@@ -54,11 +55,6 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
-
-  # RSpec for the app testing
-  gem 'rspec-activemodel-mocks'
-  gem 'rspec-its'
-  gem 'shoulda-matchers'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
+# Business logic for the API calls related to the Product operations
 class API::ProductsController < ApplicationController
   # get product details before every action
   before_action :fetch_product
 
   # List all products
+  # GET  /api/products
   def index
     @products = Product.all
     if (params[:instock] && params[:instock] == "true")
@@ -15,6 +17,7 @@ class API::ProductsController < ApplicationController
   end
 
   # Search for specific product
+  # GET  /api/products/:id
   def search
     render json: @product
   end
